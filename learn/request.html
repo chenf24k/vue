@@ -15,9 +15,11 @@
 			<input type="text" placeholder="url" v-model="url" />
 			<input type="button" value="请求" @click="submit" />
 			<br />
-			<textarea id="ta" v-model="result" style="margin-top: 20px;width: 200px;height: 200px;">
-				{{  result }}
-			</textarea>
+			<!-- <textarea id="ta" v-model="result" style="margin-top: 20px;width: 300px;height: 300px;"></textarea> -->
+
+			<pre v-html="result"></pre>
+
+
 		</div>
 
 		<script type="text/javascript">
@@ -31,18 +33,26 @@
 				methods: {
 					submit: function() {
 						var _this = this;
-						if (_this.selected == 'GET') {
-							const xHttp = new XMLHttpRequest();
-							xHttp.onreadystatechange = function() {
-								if (this.readyState == 4 && this.status == 200) {
-									_this.result = this.responseText;
-								}
-							};
-							xHttp.open("GET", _this.url, true);
-							xHttp.send();
-						}
-						if (_this.selected == 'POST') {
-							alert('post功能开发中...');
+						if (_this.url.trim() == '') {
+							return;
+						} else {
+							if (_this.selected == 'GET') {
+								const xHttp = new XMLHttpRequest();
+								xHttp.onreadystatechange = function() {
+									if (this.readyState == 4 && this.status == 200) {
+										console.log(this.responseText);
+										_this.result = this.responseText;
+										// _this.result = JSON.stringify(this.responseText, null, 4);
+									} else {
+										_this.result = "请检查url";
+									}
+								};
+								xHttp.open("GET", _this.url, true);
+								xHttp.send();
+							}
+							if (_this.selected == 'POST') {
+								alert('post功能开发中...');
+							}
 						}
 					},
 				}
