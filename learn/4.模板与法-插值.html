@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js" type="text/javascript" charset="UTF-8 "></script>
+	</head>
+	<body>
+		<div id="app">
+			{{ msg }}
+			<p v-html="rawHtml">
+				<!-- Mustache:{{ rawHtml }} -->
+			</p>
+			
+			<!-- v-bind 动态绑定属性 -->
+			<div v-bind:class="color">动态绑定文本颜色</div>
+			<p>{{ number + 1 }}</p>
+			<p>{{ ok ? 'YES' : 'NO' }}</p>
+			<p>{{ message.split('').reverse().join() }}</p>
+		</div>
+		
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: "hi vue",
+					rawHtml: '<span style="color:red">this should be red</span>',
+					color: 'red',
+					number: 10,
+					ok: false,
+					message: "vue"
+					
+				},
+			});
+		</script>
+		
+		<style type="text/css">
+			.red {
+				color: blueviolet;
+			}
+		</style>
+	</body>
+</html>

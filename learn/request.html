@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js" type="text/javascript" charset="UTF-8 "></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<select v-model="selected">
+				<option value="GET">GET</option>
+				<option value="POST">POST</option>
+			</select>
+			<input type="text" placeholder="url" v-model="url" />
+			<input type="button" value="请求" @click="submit" />
+			<br />
+			<textarea id="ta" v-model="result" style="margin-top: 20px;width: 200px;height: 200px;">
+				{{  result }}
+			</textarea>
+		</div>
+
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					url: '',
+					selected: 'GET',
+					result: ''
+				},
+				methods: {
+					submit: function() {
+						var _this = this;
+						if (_this.selected == 'GET') {
+							const xHttp = new XMLHttpRequest();
+							xHttp.onreadystatechange = function() {
+								if (this.readyState == 4 && this.status == 200) {
+									_this.result = this.responseText;
+								}
+							};
+							xHttp.open("GET", _this.url, true);
+							xHttp.send();
+						}
+						if (_this.selected == 'POST') {
+							alert('post功能开发中...');
+						}
+					},
+				}
+			});
+		</script>
+	</body>
+</html>
