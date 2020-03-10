@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+
+		<!-- <div id="app">
+			{{ message }}
+		</div> -->
+
+		<div id="app2">
+			{{ message }}
+		</div>
+
+		<script type="text/javascript">
+			const url = 'https://test-communityapi.xiaomawang.com';
+			/* let app = new Vue({
+				el: '#app',
+				data: {
+					message: ''
+				},
+				created() {
+					const reqUrl = url + '/api/index/banner/index?type=1';
+					fetch(reqUrl)
+						.then(response => response.json())
+						.then(json => {
+							this.message = json
+						})
+				}
+			}); */
+
+			let app2 = new Vue({
+				el: '#app2',
+				data: {
+					message: ''
+				},
+				created() {
+					const reqUrl = url + '/api/course/users/save';
+					const aa = 'http://127.0.0.1:8080/create';
+					const bb = 'https://reqres.in/api/users';
+					const token =
+						'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOnsiZ3JhbnRUeXBlIjoiIiwic2NvcGUiOiIifSwiYXVkIjp7Im93bmVyIjp7ImFwcElkIjoieG13Mzg1MTIxMDY1NjkyMCIsInVjSWQiOjU5MzM3NywiYWNjb3VudCI6IjEzMTAwMDAwOTE3In0sInZpc2l0b3IiOiIueGlhb21hd2FuZy5jb20ifSwiZXhwIjoxNTg0NDIwMjkzfQ.AeNqMopttM3YO8BqxVgMfEHdLt3VIusM91n_uQUXSDU';
+					fetch(aa, {
+							method: 'POST',
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+							body: JSON.stringify({
+								"id": 1,
+								"job": "leader"
+							})
+						})
+						.then(response => response.json())
+						.then(json => {
+							this.message = json
+						})
+				}
+			});
+		</script>
+	</body>
+</html>
