@@ -7,15 +7,17 @@
 	</head>
 	<body>
 		<div id="app">
-			{{ msg }}
+			{{ a }}
 		</div>
 		<script type="text/javascript">
 			var vm = new Vue({
 				el: '#app',
 				data: {
-					msg: "hi vue",
+					a: "hi vue",
 				},
-				
+				created: function() {
+					console.log('a is:' + this.a);
+				},
 			});
 		</script>
 	</body>
